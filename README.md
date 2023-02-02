@@ -28,7 +28,7 @@
 | `src/objects/` | Folder that contains all Three.js "object components" (meshes etc.) |
 | `src/components/` | Folder for all other misc. React components |
 | `src/theme.ts` | Theme configuration |
-| `src/main.css` | CSS that is applied globally |
+| `src/global.css` | CSS that is applied globally |
 | `electron/` | Electron-specific code like creating windows and handling IPC |
 
 <br>
