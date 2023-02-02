@@ -3,7 +3,7 @@
 <br>
 
 ## Setup:
-1. [Click here to create a repository based on this template](https://github.com/Sv443/React-Three-Electron-Template)
+1. [Click here to create a repository based on this template](https://github.com/Sv443/React-Three-Electron-Template/generate)
 2. Clone your repository with git
 3. Run the command `npm i` to install dependencies
 
