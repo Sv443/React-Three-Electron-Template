@@ -1,0 +1,62 @@
+{
+  "name": "react-mui-three-electron-template",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run build-prepare && electron-builder",
+    "build-win": "npm run build-prepare && electron-builder -w",
+    "build-mac": "npm run build-prepare && electron-builder -m",
+    "build-linux": "npm run build-prepare && electron-builder -l",
+    "build-prepare": "tsc && vite build",
+    "serve": "vite preview",
+    "lint": "tsc --noEmit && eslint ."
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.9",
+    "@react-three/fiber": "^8.8.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.145.0"
+  },
+  "devDependencies": {
+    "@import-meta-env/unplugin": "^0.2.0",
+    "@types/node": "^18.8.5",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@types/three": "^0.144.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "@vitejs/plugin-react": "^2.1.0",
+    "dotenv": "^16.0.3",
+    "electron": "^22.2.0",
+    "electron-builder": "^23.6.0",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.8",
+    "vite-electron-plugin": "^0.7.4"
+  },
+  "debug": {
+    "env": {
+      "VITE_DEV_SERVER_URL": "http://127.0.0.1:3010"
+    }
+  }
+}

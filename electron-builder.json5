@@ -1,0 +1,33 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+  appId: "net.sv443.react-three-electron-template",
+  productName: "React, Three.js, Electron, TypeScript & Vite Template",
+  copyright: "Copyright © YEAR, NAME",
+  asar: true,
+  directories: {
+    output: "release/${version}",
+    buildResources: "electron/resources",
+  },
+  files: ["dist-electron", "dist"],
+  win: {
+    target: [
+      {
+        target: "nsis",
+        arch: ["x64"],
+      },
+    ],
+    artifactName: "${productName}-${version}-Windows_Setup.${ext}",
+  },
+  nsis: {
+    oneClick: false,
+    perMachine: false,
+    allowToChangeInstallationDirectory: true,
+    deleteAppDataOnUninstall: true,
+  },
+  mac: {
+    target: ["dmg"],
+    artifactName: "${productName}-${version}-MacOS_Installer.${ext}",
+  },
+}
