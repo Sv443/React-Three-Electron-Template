@@ -1,6 +1,7 @@
 {
   "name": "react-mui-three-electron-template",
   "version": "0.1.0",
+  "main": "dist-electron/electron/main/index.js",
   "scripts": {
     "dev": "vite",
     "build": "npm run build-prepare && electron-builder",
@@ -28,7 +29,7 @@
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.9",
-    "@react-three/fiber": "^8.8.10",
+    "@react-three/fiber": "^8.16.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.145.0"
