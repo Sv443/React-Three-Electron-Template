@@ -35,14 +35,14 @@ const safeDOM = {
  */
 function getLoading() {
   const className = `loaders-css__square-spin`;
-  const styleContent = `
+  const styleContent = `\
 @keyframes square-spin {
   25% { transform: perspective(100px) rotateX(180deg) rotateY(0); }
   50% { transform: perspective(100px) rotateX(180deg) rotateY(180deg); }
   75% { transform: perspective(100px) rotateX(0) rotateY(180deg); }
   100% { transform: perspective(100px) rotateX(0) rotateY(0); }
 }
-.${className} > div {
+.${className} > div:not(.loading-txt) {
   animation-fill-mode: both;
   width: 50px;
   height: 50px;
@@ -56,19 +56,25 @@ function getLoading() {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #282c34;
   z-index: 9;
 }
-    `;
+.loading-txt {
+  user-select: none;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 1.25rem;
+}`;
   const oStyle = document.createElement("style");
   const oDiv = document.createElement("div");
 
   oStyle.id = "app-loading-style";
   oStyle.innerHTML = styleContent;
   oDiv.className = "app-loading-wrap";
-  oDiv.innerHTML = `<div class="${className}"><div></div></div>`;
+  oDiv.innerHTML = `<div class="${className}"><div></div></div><div class="loading-txt">Loading…</div>`;
 
   return {
     appendLoading() {
@@ -87,8 +93,8 @@ function getLoading() {
 const { appendLoading, removeLoading } = getLoading();
 domReady().then(appendLoading);
 
-window.onmessage = (ev) => {
-  ev.data.payload === "removeLoading" && removeLoading();
-};
+window.addEventListener("message", ({ data }: MessageEvent) =>
+  data.payload === "removeLoading" && removeLoading()
+);
 
 setTimeout(removeLoading, 4999);

@@ -1,6 +1,5 @@
-import THREE from "three";
-import { useRef, useState } from "react";
-import { useFrame, ThreeElements } from "@react-three/fiber";
+import { useState } from "react";
+import { ThreeElements } from "@react-three/fiber";
 
 export function Cube(props: ThreeElements["mesh"]) {
   const [hovering, setHovering] = useState(false);
