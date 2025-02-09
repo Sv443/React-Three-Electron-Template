@@ -1,5 +1,5 @@
 /**
- * @see https://www.electron.build/configuration/configuration
+ * @see https://www.electron.build/electron-builder.interface.configuration
  */
 {
   appId: "net.sv443.react-three-electron-template",
