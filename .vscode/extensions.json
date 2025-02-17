@@ -4,7 +4,8 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "mrmlnc.vscode-json5",
-    "rbbit.typescript-hero",
-    "syler.sass-indented"
+    "syler.sass-indented",
+    "dbaeumer.vscode-eslint",
+    "fabiospampinato.vscode-highlight"
   ]
 }
