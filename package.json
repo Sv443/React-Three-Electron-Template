@@ -10,7 +10,8 @@
     "build-linux": "npm run build-prepare && electron-builder -l",
     "build-prepare": "tsc && vite build",
     "serve": "vite preview",
-    "lint": "tsc --noEmit && eslint ."
+    "lint": "tsc --noEmit && eslint .",
+    "format": "eslint . --fix"
   },
   "browserslist": {
     "production": [

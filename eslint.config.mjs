@@ -23,20 +23,26 @@ const config = [
     ignores: [
       "**/*.min.*",
       "**/*.map",
+      "**/dev/**/*",
       "node_modules/**/*",
       "dist/**/*",
-      "**/dev/**/*",
+      "dist-electron/**/*",
+      ".vscode/**/*",
     ],
   }, ...compat.extends(
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
   ), {
     plugins: {
       "@typescript-eslint": typescriptEslint,
+    },
+    settings: {
+      react: {
+        version: "detect"
+      },
     },
     languageOptions: {
       globals: {
@@ -68,7 +74,7 @@ const config = [
       "no-unused-vars": "off",
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-empty-object-type": "off",
-      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-expressions": ["error", {
         allowShortCircuit: true,
         allowTernary: true,
@@ -77,6 +83,7 @@ const config = [
       "@typescript-eslint/no-unsafe-declaration-merging": "off",
       "comma-dangle": ["error", "only-multiline"],
       "no-misleading-character-class": "off",
+      "react/no-unknown-property": "off",
     },
   }, {
     files: ["**/*.js", "**/*.mjs", "**/*.cjs"],
@@ -99,7 +106,7 @@ const config = [
     },
   },
   {
-    files: ["**/electron/**/*.*"],
+    files: ["**/electron/**/*.(js|ts|jsx|tsx|mjs|cjs|mts|d.ts)"],
     languageOptions: {
       globals: {
         ...globals.node,

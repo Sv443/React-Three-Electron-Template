@@ -5,9 +5,9 @@ export const useCubeStore = create<{
   setClicked: (clicked: boolean) => void;
   hovering: boolean;
   setHovering: (hovering: boolean) => void;
-}>((set) => ({
-  clicked: false,
-  setClicked: (clicked) => set({ clicked }),
-  hovering: false,
-  setHovering: (hovering) => set({ hovering }),
-}));
+    }>((set) => ({
+      clicked: false,
+      setClicked: (clicked) => set({ clicked }),
+      hovering: false,
+      setHovering: (hovering) => set({ hovering }),
+    }));

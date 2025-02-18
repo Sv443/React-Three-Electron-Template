@@ -26,14 +26,14 @@ export default defineConfig({
       // Will start Electron via VSCode Debug
       plugins: process.env.VSCODE_DEBUG
         ? [
-            customStart(
-              debounce(() =>
-                console.log(
-                  /* For `.vscode/.debug.script.mjs` */ "[startup] Electron App"
-                )
+          customStart(
+            debounce(() =>
+              console.log(
+                /* For `.vscode/.debug.script.mjs` */ "[startup] Electron App"
               )
-            ),
-          ]
+            )
+          ),
+        ]
         : undefined,
     }),
   ],
@@ -41,12 +41,12 @@ export default defineConfig({
     port: 3010,
     ...(process.env.VSCODE_DEBUG
       ? (() => {
-          const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL);
-          return {
-            host: url.hostname,
-            port: +url.port,
-          };
-        })()
+        const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL);
+        return {
+          host: url.hostname,
+          port: +url.port,
+        };
+      })()
       : undefined),
   },
   clearScreen: false,
