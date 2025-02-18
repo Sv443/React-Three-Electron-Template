@@ -15,6 +15,8 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 });
 
+// TODO: fix lint errors
+
 /** @type {import("eslint").Linter.Config} */
 const config = [
   {
