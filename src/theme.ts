@@ -1,7 +1,4 @@
-import {
-  createTheme as createMuiTheme,
-  responsiveFontSizes,
-} from "@mui/material";
+import { createTheme as createMuiTheme, responsiveFontSizes } from "@mui/material";
 
 export const createTheme = ({ darkMode }: { darkMode: boolean }) =>
   responsiveFontSizes(

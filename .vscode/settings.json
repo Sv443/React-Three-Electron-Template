@@ -1,7 +1,11 @@
 {
   // "npm.packageManager": "pnpm",
-  "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/typescript/lib",
+
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "javascript.preferences.importModuleSpecifierEnding": "js",
 
   // requires extension: fabiospampinato.vscode-highlight
   "highlight.regexes": {

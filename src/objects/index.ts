@@ -1,2 +1,3 @@
-export * from "./Cube";
-export * from "./Sphere";
+export * from "./Cube.js";
+export * from "./GlobalStateCube.js";
+export * from "./Sphere.js";

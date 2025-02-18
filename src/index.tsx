@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
 import { WebGLRenderer } from "three";
-import { App } from "./App";
-import { AppDecorator } from "./components/AppDecorator";
-import { createTheme } from "./theme";
+import { App } from "./App.js";
+import { AppDecorator } from "./components/AppDecorator.js";
+import { createTheme } from "./theme.js";
 import "./global.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
