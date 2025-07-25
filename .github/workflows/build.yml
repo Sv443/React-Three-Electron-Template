@@ -71,8 +71,8 @@ jobs:
             debhelper \
             devscripts \
             rpm \
-            snapcraft \
             flatpak-builder
+          sudo snap install snapcraft --classic
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -95,7 +95,7 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Build ${{ matrix.os }}
+      - name: Build on ${{ runner.os }}
         run: pnpm build
 
       - name: Upload artifacts
