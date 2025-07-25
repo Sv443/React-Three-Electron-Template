@@ -18,6 +18,11 @@ jobs:
     # if it's too long, your CI budget might be wasted on builds that never finish
     timeout-minutes: 15
 
+    permissions:
+      actions: read
+      contents: read
+      packages: write
+
     env:
       # indicate to npm and other processes that this is a CI environment
       CI: "true"
