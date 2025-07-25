@@ -21,11 +21,11 @@
         target: "nsis",
         arch: [
           "x64",
-          // "arm64"
+          "arm64"
         ],
       },
     ],
-    artifactName: "${productName}-${version}-Windows_Setup.${ext}",
+    artifactName: "${productName}-${version}-Windows.${ext}",
   },
   nsis: {
     oneClick: false,
@@ -35,9 +35,15 @@
   },
   mac: {
     target: [
-      "dmg"
+      {
+        target: "pkg",
+        arch: [
+          "x64",
+          "arm64"
+        ],
+      }
     ],
-    artifactName: "${productName}-${version}-MacOS_Installer.${ext}",
+    artifactName: "${productName}-${version}-MacOS.${ext}",
   },
   linux: {
     target: [
