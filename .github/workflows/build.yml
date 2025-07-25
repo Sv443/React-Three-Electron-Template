@@ -34,6 +34,8 @@ jobs:
       # the first number is used for pushes to the main branch (releases)
       # the second number is used for pull requests (to keep the storage usage low)
       ARTIFACT_RETENTION_DAYS: ${{ github.event_name == 'push' && github.ref_name == 'main' && 4 || 1 }}
+      # cache directory for electron-builder files
+      ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
 
     strategy:
       # don't cancel other jobs when one fails
@@ -59,9 +61,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Set up dependencies
+      - name: Set up Linux dependencies
         if: ${{ runner.os == 'Linux' }}
-        # ensure packages can be built for deb, rpm, snap, pacman and flatpak
+        # ensure packages can be built for deb, rpm, snap, pacman
         run: |
           sudo apt update
           sudo apt install -y \
@@ -70,8 +72,7 @@ jobs:
             dpkg-dev \
             debhelper \
             devscripts \
-            rpm \
-            flatpak-builder
+            rpm
           sudo snap install snapcraft --classic
 
       - name: Set up pnpm
@@ -94,6 +95,14 @@ jobs:
 
       - name: Install dependencies
         run: pnpm i
+
+      - name: Set up electron-builder cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.ELECTRON_BUILDER_CACHE }}
+          key: ${{ runner.os }}-electron-builder-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/electron-builder.json5') }}
+          restore-keys: |
+            ${{ runner.os }}-electron-builder-
 
       - name: Build on ${{ runner.os }}
         run: pnpm build

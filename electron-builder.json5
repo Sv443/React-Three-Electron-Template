@@ -46,7 +46,6 @@
       "rpm",
       "snap",
       "pacman",
-      "flatpak",
     ],
     artifactName: "${productName}-${version}-Linux.${ext}",
     category: "Utility",
