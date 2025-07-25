@@ -1,6 +1,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
+import tsESLint from "typescript-eslint";
+import tsESLintPlugin from "@typescript-eslint/eslint-plugin";
 import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
 import js from "@eslint/js";
@@ -14,8 +15,6 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
   allConfig: js.configs.all,
 });
-
-// TODO: fix lint errors
 
 /** @type {import("eslint").Linter.Config} */
 const config = [
@@ -37,7 +36,7 @@ const config = [
     "plugin:@typescript-eslint/recommended",
   ), {
     plugins: {
-      "@typescript-eslint": typescriptEslint,
+      "@typescript-eslint": tsESLintPlugin,
     },
     settings: {
       react: {
@@ -115,4 +114,4 @@ const config = [
   },
 ];
 
-export default config;
+export default tsESLint.config(config);

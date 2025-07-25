@@ -13,6 +13,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.join(__dirname, "src"),
+      "@comp": path.join(__dirname, "src/components"),
+      "@store": path.join(__dirname, "src/stores"),
+      "@obj": path.join(__dirname, "src/objects"),
       styles: path.join(__dirname, "src/assets/styles"),
     },
   },

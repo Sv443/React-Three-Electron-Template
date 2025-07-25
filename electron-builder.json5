@@ -2,6 +2,7 @@
  * @see https://www.electron.build/electron-builder.interface.configuration
  */
 {
+  "$schema": "https://json.schemastore.org/electron-builder",
   appId: "net.sv443.react-three-electron-template",
   productName: "React, Three.js, Electron, TypeScript & Vite Template",
   copyright: "Copyright © YEAR, NAME",
@@ -10,12 +11,18 @@
     output: "release/${version}",
     buildResources: "electron/resources",
   },
-  files: ["dist-electron", "dist"],
+  files: [
+    "dist-electron",
+    "dist",
+  ],
   win: {
     target: [
       {
         target: "nsis",
-        arch: ["x64"],
+        arch: [
+          "x64",
+          // "arm64"
+        ],
       },
     ],
     artifactName: "${productName}-${version}-Windows_Setup.${ext}",
@@ -27,7 +34,22 @@
     deleteAppDataOnUninstall: true,
   },
   mac: {
-    target: ["dmg"],
+    target: [
+      "dmg"
+    ],
     artifactName: "${productName}-${version}-MacOS_Installer.${ext}",
+  },
+  linux: {
+    target: [
+      "AppImage",
+      "deb",
+      "rpm",
+      "snap",
+      "pacman",
+      "flatpak",
+    ],
+    artifactName: "${productName}-${version}-Linux.${ext}",
+    category: "Utility",
+    icon: "electron/resources/icon.png",
   },
 }

@@ -7,6 +7,9 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"paths": {
+      "@obj/*": ["src/objects/*"],
+      "@store/*": ["src/stores/*"],
+      "@comp/*": ["src/components/*"],
 			"@/*": ["src/*"],
 		},
     "allowJs": false,

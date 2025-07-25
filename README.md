@@ -1,23 +1,29 @@
 # React, MUI, Three.js, Electron, TypeScript & Vite Template
+Extensive template and boilerplate for building web- and desktop apps with React, Material UI, Three.js, Electron, TypeScript and Vite.  
+Supports hot reloading inside the electron app and has a full ESLint configuration, a custom loading screen and a lot of electron background process boilerplate.  
+Also sports GitHub Actions workflows for linting and analyzing the code for vulnerabilities and building the executable on multiple platforms.  
 
 <br>
 
 ## Setup:
 1. [Click here to create a repository based on this template](https://github.com/Sv443/React-Three-Electron-Template/generate)
 2. Clone your repository with git
-3. Run the command `npm i` to install dependencies
+3. Install [Node.js](https://nodejs.org/en/download/) and [pnpm](https://pnpm.io/installation)
+4. Run the command `pnpm i` to install dependencies
+5. Run `pnpm dev` to start the electron app using the vite dev server.  
+  Saving files will now automatically rebuild and reload the changed parts of the app.
 
 <br>
 
 ## Commands:
 | Command | Description |
 | --- | --- |
-| `npm run dev` | Starts the vite dev server and the electron app |
-| `npm run lint` | Lint the code with ESLint |
-| `npm run build` | Compiles the TS code and builds the electron executable |
-| `npm run build-win` | Build for Windows only |
-| `npm run build-mac` | Build for MacOS only |
-| `npm run build-linux` | Build for Linux only |
+| `pnpm dev` | Start the vite dev server and the electron app |
+| `pnpm lint` | Lint the code with ESLint |
+| `pnpm build` | Build the installer for the current platform |
+| `pnpm build-win` | Build for Windows specifically |
+| `pnpm build-mac` | Build for MacOS specifically |
+| `pnpm build-linux` | Build for Linux specifically |
 
 <br>
 
@@ -30,23 +36,33 @@
 | `src/theme.ts` | Theme configuration |
 | `src/global.css` | CSS that is applied globally |
 | `electron/` | Electron-specific code like creating windows and handling IPC |
+| `public/` | Static files that are copied to the dist folder |
+| `dist/` | Contains the web app built by vite |
+| `dist-electron/` | Contains electron build files |
+| `release/` | Folder where the executables are placed after running `pnpm build` |
 
 <br>
 
-## Additional info & guides & interesting packages
+## Additional info & guides & interesting libraries
+
+### Info
+- Electron Builder can only build for the current platform.  
+  If you want to build for another platform, you need to run the command on that platform.  
+  Alternatively, use a CI service like the GitHub workflows in `.github/workflows/` to build for all platforms.  
 
 ### Main stuff
-- https://mui.com/material-ui/getting-started/overview/
-- https://github.com/pmndrs/react-three-fiber
-- https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene
+- [Getting started with MUI](https://mui.com/material-ui/getting-started/overview/)
+- [Getting started with react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+- [Creating a scene in Three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)
 
 ### Helpful stuff
-- https://discoverthreejs.com/tips-and-tricks/
+- [The Big List of Three.js Tips and Tricks](https://discoverthreejs.com/tips-and-tricks/)
+- [electron-builder documentation to customize the installer](https://www.electron.build/)
 
-### Other cool stuff
-- https://github.com/pmndrs/gltfjsx
-- https://github.com/pmndrs/drei
-- https://github.com/pmndrs/react-three-flex
-- https://github.com/pmndrs/use-cannon
-- https://github.com/pmndrs/react-spring
-- https://github.com/pmndrs/leva
+### Cool libraries
+- [Convert gltf 3D models to components](https://github.com/pmndrs/gltfjsx)
+- [Useful helpers for react-three-fiber](https://github.com/pmndrs/drei)
+- [Flexbox for react-three-fiber](https://github.com/pmndrs/react-three-flex)
+- [Physics-based hooks for react-three-fiber](https://github.com/pmndrs/use-cannon)
+- [Spring physics based React animation library](https://github.com/pmndrs/react-spring)
+- [React-first components GUI](https://github.com/pmndrs/leva)

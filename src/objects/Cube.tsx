@@ -8,7 +8,7 @@ export function Cube(props: ThreeElements["mesh"]) {
   return (
     <mesh
       {...props}
-      scale={clicked ? 2 : 1}
+      scale={(clicked ? 1.5 : 1) + (hovering ? 0.15 : 0)}
       onClick={() => setClicked(!clicked)}
       onPointerOver={() => setHovering(true)}
       onPointerOut={() => setHovering(false)}

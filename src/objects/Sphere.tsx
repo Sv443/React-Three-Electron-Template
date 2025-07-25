@@ -4,7 +4,7 @@ export function Sphere(props: ThreeElements["mesh"]) {
   return (
     <mesh {...props}>
       <sphereGeometry />
-      <meshStandardMaterial color="red" />
+      <meshStandardMaterial color="red"  />
     </mesh>
   );
 }

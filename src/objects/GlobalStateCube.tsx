@@ -1,5 +1,5 @@
 import { ThreeElements } from "@react-three/fiber";
-import { useCubeStore } from "@/stores/index.js";
+import { useCubeStore } from "@store/cubeStore.js";
 
 export function GlobalStateCube(props: ThreeElements["mesh"]) {
   const cs = useCubeStore();
@@ -7,7 +7,7 @@ export function GlobalStateCube(props: ThreeElements["mesh"]) {
   return (
     <mesh
       {...props}
-      scale={cs.clicked ? 2 : 1}
+      scale={(cs.clicked ? 1.5 : 1) + (cs.hovering ? 0.15 : 0)}
       onClick={() => cs.setClicked(!cs.clicked)}
       onPointerOver={() => cs.setHovering(true)}
       onPointerOut={() => cs.setHovering(false)}

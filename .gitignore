@@ -24,3 +24,7 @@ dist-ssr
 release/
 .vscode/.debug.env
 dist-electron
+
+.env
+*.ignore.*
+*.ignore/
