@@ -49,6 +49,7 @@ Also sports GitHub Actions workflows for linting and analyzing the code for vuln
 - Electron Builder can only build for the current platform.  
   If you want to build for another platform, you need to run the command on that platform.  
   Alternatively, use a CI service like the GitHub workflows in `.github/workflows/` to build for all platforms.  
+- Replace the `LICENSE.txt` file with your own license.  
 
 ### Main stuff
 - [Getting started with MUI](https://mui.com/material-ui/getting-started/overview/)

@@ -2,6 +2,7 @@
   "name": "react-mui-three-electron-template",
   "version": "0.1.0",
   "main": "dist-electron/electron/main/index.js",
+  "license": "Unlicense",
   "scripts": {
     "dev": "vite",
     "build": "npm run build-prepare && electron-builder",
