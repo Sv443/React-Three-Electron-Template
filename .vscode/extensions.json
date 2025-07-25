@@ -1,11 +1,9 @@
 {
-  // See http://go.microsoft.com/fwlink/?LinkId=827846
-  // for the documentation about the extensions.json format
   "recommendations": [
-    "editorconfig.editorconfig",
-    "mrmlnc.vscode-json5",
-    "syler.sass-indented",
+    "BlueGlassBlock.better-json5",
     "dbaeumer.vscode-eslint",
-    "fabiospampinato.vscode-highlight"
+    "fabiospampinato.vscode-highlight",
+    "MylesMurphy.prettify-ts",
+    "yoavbls.pretty-ts-errors",
   ]
 }

@@ -1,11 +1,21 @@
 {
-  // "npm.packageManager": "pnpm",
+  // use pnpm as the package manager
+  "npm.packageManager": "pnpm",
+
+  // use the installed TS version instead of the VS Code bundled one
   "typescript.tsdk": "node_modules/typescript/lib",
 
-  "typescript.preferences.importModuleSpecifier": "relative",
-  "javascript.preferences.importModuleSpecifier": "relative",
+  // prefer using tsconfig paths and use .js to match the latest ESM spec
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifierEnding": "js",
   "javascript.preferences.importModuleSpecifierEnding": "js",
+
+  // use consistent formatting extensions
+  "files.associations": {
+    "*.env": "dotenv",
+    "*.env.template": "dotenv",
+  },
 
   // requires extension: fabiospampinato.vscode-highlight
   "highlight.regexes": {
