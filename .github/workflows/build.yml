@@ -36,6 +36,8 @@ jobs:
       ARTIFACT_RETENTION_DAYS: ${{ github.event_name == 'push' && github.ref_name == 'main' && 4 || 1 }}
 
     strategy:
+      # don't cancel other jobs when one fails
+      fail-fast: false
       # the build matrix runs this job for each combination of the listed arguments
       # e.g. the following config will run three times; node-22 on ubuntu-latest, node-22 on windows-latest, node-22 on macos-13 (x86) and node-22 on macos-latest (arm64)
       matrix:
