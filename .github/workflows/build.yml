@@ -1,0 +1,83 @@
+# this workflow builds the project every push and pull request to main
+# this is to ensure the project builds correctly, to have a preview version to test with, and to catch any build-time issues early
+name: "Build"
+
+on:
+  workflow_dispatch: # manual trigger
+  pull_request:
+    branches: [main] # pull requests to main branch (to verify PRs before merging)
+  push:
+    branches: [main] # pushes to main branch (to build files that can be used for releases)
+
+jobs:
+  build:
+    name: Build
+
+    # check how long the build takes and adjust this timeout accordingly
+    # if it's too short, the build will fail
+    # if it's too long, your CI budget might be wasted on builds that never finish
+    timeout-minutes: 15
+
+    env:
+      # indicate to npm and other processes that this is a CI environment
+      CI: "true"
+      # set by step "Get pnpm store directory"
+      STORE_PATH: ""
+      # version of pnpm to use
+      PNPM_VERSION: 10
+      # how long to keep the build artifacts
+      # the first number is used for pushes to the main branch (releases)
+      # the second number is used for pull requests (to keep the storage usage low)
+      ARTIFACT_RETENTION_DAYS: ${{ github.event_name == 'push' && github.ref_name == 'main' && 4 || 1 }}
+
+    strategy:
+      # the build matrix runs this job for each combination of the listed arguments
+      # e.g. the following config will run three times; node-22 on ubuntu-latest, node-22 on windows-latest, node-22 on macos-13 (x86) and node-22 on macos-latest (arm64)
+      matrix:
+        node-version: [22.x]
+        # build for all platforms
+        os: [ubuntu-latest, windows-latest, macos-13, macos-latest]
+        # here's a list of runner platforms for public repos: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for-public-repositories
+        # and here for private repos: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for--private-repositories
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js v${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }} # cache the pnpm store as long as the lockfile isn't changed
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build ${{ matrix.os }}
+        run: pnpm build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ github.ref_name }}-${{ github.sha }}
+          path: release
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}

@@ -1,0 +1,57 @@
+# this workflow lints the codebase using ESLint to ensure a certain level of code quality and a consistent style
+name: "Lint"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [develop]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    # check how long the linting takes and adjust this timeout accordingly
+    timeout-minutes: 5
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    env:
+      CI: "true" # indicate to npm and other processes that this is a CI environment
+      STORE_PATH: "" # set by step "Get pnpm store directory"
+      PNPM_VERSION: 10 # version of pnpm
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js v${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }} # cache the pnpm store as long as the lockfile isn't changed
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build with tsc and run ESLint
+        run: pnpm lint
