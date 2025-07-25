@@ -49,6 +49,8 @@
     ],
     artifactName: "${productName}-${version}-Linux.${ext}",
     category: "Utility",
+    maintainer: "Sv443",
+    vendor: "Sv443",
     icon: "electron/resources/icon.png",
   },
 }
