@@ -121,6 +121,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ runner.os }}-${{ github.ref_name }}-${{ github.sha }}"
+          name: "${{ matrix.os }}-${{ github.ref_name }}-${{ github.sha }}"
           path: release
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
