@@ -45,8 +45,7 @@ jobs:
       matrix:
         node-version: [22.x]
         # build for all platforms
-        # os: [ubuntu-latest, windows-latest, macos-13, macos-latest]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-13, macos-latest]
         # here's a list of runner platforms for public repos: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for-public-repositories
         # and here for private repos: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for--private-repositories
 
@@ -56,12 +55,12 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js v${{ matrix.node-version }}
+      - name: Setup Node.js v${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Set up Linux dependency cache
+      - name: Setup Linux dependency cache
         if: ${{ runner.os == 'Linux' }}
         uses: actions/cache@v4
         with:
@@ -72,7 +71,7 @@ jobs:
           key: "${{ matrix.os }}-deps-${{ hashFiles('**/package.json', '**/electron-builder.json5') }}"
           restore-keys: ${{ matrix.os }}-deps-
 
-      - name: Set up Linux dependencies
+      - name: Setup Linux dependencies
         if: ${{ runner.os == 'Linux' }}
         # ensure packages can be built for deb, rpm, snap, pacman
         run: |
@@ -86,7 +85,7 @@ jobs:
             rpm
           sudo snap install snapcraft --classic
 
-      - name: Set up pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
@@ -106,14 +105,14 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Set up electron-builder cache
+      - name: Setup electron-builder cache
         uses: actions/cache@v4
         with:
           path: ${{ env.ELECTRON_BUILDER_CACHE }}
           key: ${{ matrix.os }}-electron-builder-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/electron-builder.json5') }}
           restore-keys: ${{ matrix.os }}-electron-builder-
 
-      - name: Build for ${{ matrix.os }}
+      - name: Build on ${{ matrix.os }}
         run: pnpm build
 
       - name: Upload artifacts

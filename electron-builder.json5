@@ -45,7 +45,6 @@
       "deb",
       "rpm",
       "snap",
-      "pacman",
     ],
     artifactName: "${productName}-${version}-Linux.${ext}",
     category: "Utility",

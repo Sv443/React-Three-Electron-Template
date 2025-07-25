@@ -2,6 +2,7 @@
 Extensive template and boilerplate for building web- and desktop apps with React, Material UI, Three.js, Electron, TypeScript and Vite.  
 Supports hot reloading inside the electron app and has a full ESLint configuration, a custom loading screen and a lot of electron background process boilerplate.  
 Also sports GitHub Actions workflows for linting and analyzing the code for vulnerabilities and building the executable on multiple platforms.  
+Builds for Windows (x64, arm64), MacOS (x64, arm64) and Linux (x64 and arm64 in the formats AppImage, deb, rpm and snap) are supported.
 
 <br>
 
