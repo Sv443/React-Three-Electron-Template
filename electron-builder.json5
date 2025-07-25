@@ -15,6 +15,9 @@
     "dist-electron",
     "dist",
   ],
+  pkg: {
+    artifactName: "${productName}-${version}-Source.${ext}",
+  },
   win: {
     target: [
       {
@@ -35,13 +38,7 @@
   },
   mac: {
     target: [
-      {
-        target: "pkg",
-        arch: [
-          "x64",
-          "arm64"
-        ],
-      }
+      "dmg"
     ],
     artifactName: "${productName}-${version}-MacOS.${ext}",
   },
