@@ -106,15 +106,6 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Setup electron-builder cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ${{ env.ELECTRON_CACHE }}
-            ${{ env.ELECTRON_BUILDER_CACHE }}
-          key: ${{ matrix.os }}-electron-builder-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/electron-builder.json5') }}
-          restore-keys: ${{ matrix.os }}-electron-builder-
-
       - name: Build on ${{ matrix.os }}
         run: pnpm build
 
